@@ -12,3 +12,29 @@
         android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>
+
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="16dp">
+
+<Button
+    android:id="@+id/btnWhatWePlay"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="What We Play" />
+
+<Button
+    android:id="@+id/btnWhoWeAre"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Who We Are" />
+
+<Button
+    android:id="@+id/btnOurSchedule"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Our Schedule" />
+</LinearLayout>
