@@ -18,10 +18,16 @@
         android:padding="16dp">
 
         <Button
-            android:id="@+id/btnWhatWePlay"
+            android:id="@+id/btnWhatWePlayed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="What We Play" />
+
+            <Button
+                android:id="@+id/btnWhatWePlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="What We Play" />
 
         <Button
             android:id="@+id/btnWhoWeAre"
