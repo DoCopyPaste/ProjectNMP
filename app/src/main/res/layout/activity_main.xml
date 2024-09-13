@@ -8,126 +8,102 @@
     tools:context=".MainActivity">
 
     <!-- Menu Icon -->
-    <ImageView
-        android:id="@+id/menu_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu"  <!-- Replace with your menu drawable -->
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/title"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp" />
+    <!-- Replace with your menu drawable -->
+
 
     <!-- Title -->
+
+    <!-- Profile Icon -->
+
+
+    <ImageView
+        android:id="@+id/menu_icon"
+        android:layout_width="56dp"
+        android:layout_height="51dp"
+        app:layout_constraintEnd_toStartOf="@+id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="299dp"
+        android:layout_height="51dp"
+        android:gravity="center"
         android:text="E-Sports"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="@+id/menu_icon"
-        app:layout_constraintStart_toEndOf="@+id/menu_icon"
-        app:layout_constraintEnd_toStartOf="@+id/profile_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/menu_icon" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Profile Icon -->
     <ImageView
         android:id="@+id/profile_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_profile"  <!-- Replace with your profile drawable -->
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/menu_icon"
-    app:layout_constraintBottom_toBottomOf="@+id/menu_icon"
-    android:layout_marginEnd="16dp" />
-
-    <!-- Section Icons and Text -->
-    <!-- What We Play -->
-    <!-- Replace with your game drawable --><![CDATA[
-    app:layout_constraintTop_toBottomOf="@+id/menu_icon"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintVertical_chainStyle="packed"
-    android:layout_marginTop="48dp" />
-
-    ]]><!-- Who We Are -->
-
-    <!-- Replace with your people drawable --><![CDATA[
-    app:layout_constraintTop_toBottomOf="@+id/what_we_play_text"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginTop="32dp" />
-
-    ]]><!-- Our Schedule -->
-
-    <!-- Replace with your schedule drawable --><![CDATA[
-    app:layout_constraintTop_toBottomOf="@+id/who_we_are_text"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginTop="32dp" />
-
-    ]]>
+        android:layout_width="56dp"
+        android:layout_height="51dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/title"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/what_we_play_icon"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@drawable/ic_game"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="135dp" />
+        android:layout_width="96dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/what_we_play_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="6dp"
         android:text="What We Play"
+        android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/what_we_play_icon" />
 
     <ImageView
         android:id="@+id/who_we_are_icon"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@drawable/ic_people"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="291dp" />
+        android:layout_width="96dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/what_we_play_text" />
 
     <TextView
         android:id="@+id/who_we_are_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_width="96dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="6dp"
         android:text="Who We Are"
+        android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/who_we_are_icon" />
 
     <ImageView
         android:id="@+id/our_schedule_icon"
-        android:layout_width="64dp"
-        android:layout_height="62dp"
-        android:src="@drawable/ic_schedule"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="485dp" />
+        android:layout_width="96dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/who_we_are_text" />
 
     <TextView
         android:id="@+id/our_schedule_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="6dp"
         android:text="Our Schedule"
+        android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/our_schedule_icon" />
 
