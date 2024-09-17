@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".WhoWeAreActivity">
 
     <ImageView
         android:id="@+id/menu_icon"
@@ -24,7 +24,7 @@
         android:layout_height="51dp"
         android:layout_marginTop="60dp"
         android:gravity="center"
-        android:text="E-Sports"
+        android:text="Who We Are"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,70 +43,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/what_we_play_icon"
-        android:layout_width="96dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="208dp"
-        android:src="@drawable/what_we_play_icon"
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/doraemon"
+        app:layout_constraintBottom_toTopOf="@+id/title_who_we_are"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/what_we_play_text"
+        android:id="@+id/title_who_we_are"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="What We Play"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/what_we_play_icon" />
-
-    <ImageView
-        android:id="@+id/who_we_are_icon"
-        android:layout_width="96dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="90dp"
-        android:src="@drawable/who_we_are_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/what_we_play_text" />
-
-    <TextView
-        android:id="@+id/who_we_are_text"
-        android:layout_width="96dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="16dp"
         android:text="Who We Are"
-        android:textAlignment="center"
-        android:textSize="16sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/who_we_are_icon" />
-
-    <ImageView
-        android:id="@+id/our_schedule_icon"
-        android:layout_width="96dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="90dp"
-        android:src="@drawable/our_schedule_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/who_we_are_text" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/our_schedule_text"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="Our Schedule"
-        android:textAlignment="center"
-        android:textSize="16sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/who_we_are_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/our_schedule_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/title_who_we_are" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
