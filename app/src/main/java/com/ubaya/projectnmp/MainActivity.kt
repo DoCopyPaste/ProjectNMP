@@ -2,40 +2,36 @@ package com.ubaya.projectnmp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.ubaya.projectnmp.R
-import com.ubaya.projectnmp.WhoWeAreActivity
+import com.ubaya.projectnmp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        // Set click listeners
-        findViewById<ImageView>(R.id.what_we_play_icon).setOnClickListener {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.whatWePlayIcon.setOnClickListener {
             startActivity(Intent(this, WhatWePlayActivity::class.java))
         }
-        findViewById<TextView>(R.id.what_we_play_text).setOnClickListener {
+        binding.whatWePlayText.setOnClickListener {
             startActivity(Intent(this, WhatWePlayActivity::class.java))
         }
 
-        findViewById<ImageView>(R.id.who_we_are_icon).setOnClickListener {
+        binding.whoWeAreIcon.setOnClickListener {
             startActivity(Intent(this, WhoWeAreActivity::class.java))
         }
-        findViewById<TextView>(R.id.who_we_are_text).setOnClickListener {
+        binding.whoWeAreText.setOnClickListener {
             startActivity(Intent(this, WhoWeAreActivity::class.java))
         }
 
-        findViewById<ImageView>(R.id.our_schedule_icon).setOnClickListener {
+        binding.ourScheduleIcon.setOnClickListener {
             startActivity(Intent(this, OurScheduleActivity::class.java))
         }
-        findViewById<TextView>(R.id.our_schedule_text).setOnClickListener {
+        binding.ourScheduleText.setOnClickListener {
             startActivity(Intent(this, OurScheduleActivity::class.java))
         }
     }
