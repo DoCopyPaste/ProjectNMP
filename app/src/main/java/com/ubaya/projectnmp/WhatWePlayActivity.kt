@@ -17,4 +17,8 @@ class WhatWePlayActivity : AppCompatActivity() {
             insets
         }
     }
+
+    public class MyData {
+
+    }
 }

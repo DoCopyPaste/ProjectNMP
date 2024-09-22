@@ -11,18 +11,16 @@
         android:id="@+id/menu_icon"
         android:layout_width="56dp"
         android:layout_height="51dp"
-        android:layout_marginTop="60dp"
         android:src="@drawable/menu_icon"
-        app:layout_constraintEnd_toStartOf="@+id/title"
+        app:layout_constraintEnd_toStartOf="@+id/scheduleTitle"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/scheduleTitle"
         android:layout_width="299dp"
         android:layout_height="51dp"
-        android:layout_marginTop="60dp"
         android:gravity="center"
         android:text="Schedule"
         android:textSize="20sp"
@@ -35,11 +33,10 @@
         android:id="@+id/profile_icon"
         android:layout_width="56dp"
         android:layout_height="51dp"
-        android:layout_marginTop="60dp"
         android:src="@drawable/profile_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/title"
+        app:layout_constraintStart_toEndOf="@+id/scheduleTitle"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
