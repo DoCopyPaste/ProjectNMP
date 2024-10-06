@@ -13,9 +13,8 @@ class OurScheduleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityOurScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
-        binding.textViewTitle.setOnClickListener {
 
+        binding.buttonSchedule.setOnClickListener {
             val intent = Intent(this, SchedulePageDetailActivity::class.java)
             startActivity(intent)
         }
