@@ -15,7 +15,6 @@ class SchedulePageDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.scheduleTitle.text = "Schedule Details"
-
         binding.eventTitle.text = "Regional Qualifier - Valorant"
         binding.eventLocationTime.text = "Los Angeles, CA (10.00 AM)"
         binding.eventTeam.text = "TEAM A"
