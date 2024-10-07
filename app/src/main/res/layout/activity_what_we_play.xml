@@ -83,7 +83,7 @@
                 android:text="Event Description"
                 android:textSize="14sp" />
             <Button
-                android:id="@+id/notifyButton"
+                android:id="@+id/likeButton"
                 style="@style/Widget.Material3.Button.IconButton.Outlined"
                 android:layout_width="117dp"
                 android:layout_height="wrap_content"
