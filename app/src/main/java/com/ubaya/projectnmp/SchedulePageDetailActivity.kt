@@ -20,7 +20,7 @@ class SchedulePageDetailActivity : AppCompatActivity() {
         binding.eventTeam.text = "TEAM A"
         binding.eventDescription.text = "This high-stakes event will bring together top teams from across the region, all competing for a chance to advance to the national finals. Expect intense gameplay, strategic plays, and thrilling moments as teams battle it out in one of the most popular first-person shooters."
 
-        binding.notifyButton.setOnClickListener {
+        binding.likeButton.setOnClickListener {
             showNotificationDialog()
         }
     }
