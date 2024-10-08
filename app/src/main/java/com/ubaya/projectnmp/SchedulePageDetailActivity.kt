@@ -1,6 +1,8 @@
 package com.ubaya.projectnmp
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ubaya.projectnmp.databinding.ActivitySchedulePageDetailBinding
@@ -14,11 +16,17 @@ class SchedulePageDetailActivity : AppCompatActivity() {
         binding = ActivitySchedulePageDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.scheduleTitle.text = "Schedule Details"
-        binding.eventTitle.text = "Regional Qualifier - Valorant"
-        binding.eventLocationTime.text = "Los Angeles, CA (10.00 AM)"
-        binding.eventTeam.text = "TEAM A"
-        binding.eventDescription.text = "This high-stakes event will bring together top teams from across the region, all competing for a chance to advance to the national finals. Expect intense gameplay, strategic plays, and thrilling moments as teams battle it out in one of the most popular first-person shooters."
+//      binding.scheduleTitle.text = intent.getStringExtra("schedule")
+        binding.eventTitle.text = intent.getStringExtra("title")
+        binding.eventLocationTime.text = intent.getStringExtra("location")
+        binding.eventTeam.text = intent.getStringExtra("team")
+        binding.eventDescription.text = intent.getStringExtra("desc")
+        val imageId = intent.getIntExtra("image", 0)
+
+        if (imageId != 0) {
+            findViewById<ImageView>(R.id.eventImage).setImageResource(imageId)
+        }
+        Log.d("DetailActivity", "Received Image ID: $imageId")
 
         binding.likeButton.setOnClickListener {
             showNotificationDialog()

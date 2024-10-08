@@ -3,6 +3,7 @@ package com.ubaya.projectnmp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ubaya.projectnmp.databinding.ActivityOurScheduleBinding
 
 class OurScheduleActivity : AppCompatActivity() {
@@ -14,9 +15,8 @@ class OurScheduleActivity : AppCompatActivity() {
         binding = ActivityOurScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonSchedule.setOnClickListener {
-            val intent = Intent(this, SchedulePageDetailActivity::class.java)
-            startActivity(intent)
-        }
+        binding.recOurSchedule.layoutManager = LinearLayoutManager(this)
+        binding.recOurSchedule.setHasFixedSize(true)
+        binding.recOurSchedule.adapter = OurScheduleAdapter()
     }
 }
