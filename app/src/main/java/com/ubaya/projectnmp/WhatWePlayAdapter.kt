@@ -4,16 +4,16 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ubaya.projectnmp.databinding.ActivityOurScheduleBinding
-import com.ubaya.projectnmp.databinding.ActivityWhatWePlayBinding
 import com.ubaya.projectnmp.databinding.WhatWePlayCardBinding
 
 class WhatWePlayAdapter()
     :RecyclerView.Adapter<WhatWePlayAdapter.QuestionViewHolder>() {
-    class QuestionViewHolder(val binding: WhatWePlayCardBinding):RecyclerView.ViewHolder(binding.root)
+    class QuestionViewHolder(val binding: WhatWePlayCardBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionViewHolder {
-        val binding = WhatWePlayCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            WhatWePlayCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return QuestionViewHolder(binding)
     }
 
@@ -21,22 +21,23 @@ class WhatWePlayAdapter()
         return WhatWePlayData.whatWePlayDatas.size
     }
 
-    override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) { // set
+    override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
         val data = WhatWePlayData.whatWePlayDatas[position]
 
         // Set data pada elemen UI di dalam card.
-        holder.binding.eventTitle.text = data.title // Misalnya TextView untuk judul game dengan id txtGameTitle
-        holder.binding.eventDescription.text = data.description // TextView untuk deskripsi game dengan id txtGameDescription
+        holder.binding.eventTitle.text = data.title
+        holder.binding.eventDescription.text = data.description
 
         // Jika gambar ada, tampilkan.
         if (data.imageId != null) {
-            holder.binding.eventImage.setImageResource(data.imageId) // Misalnya ImageView untuk gambar game dengan id imgGame
+            holder.binding.eventImage.setImageResource(data.imageId)
         }
 
-        // Set onClickListener jika ada event yang ingin di-handle saat card di-klik.
-        holder.binding.root.setOnClickListener {
-            val intent = Intent(holder.itemView.context, WhatWePlayActivity::class.java)
+        // Set onClickListener untuk mengarahkan ke AchievementsDetail.
+        holder.binding.achievementButton.setOnClickListener {
+            val intent = Intent(holder.itemView.context, AchievementDetailActivity::class.java)
             intent.putExtra("game_title", data.title)
+            intent.putExtra("game_description", data.description)
             holder.itemView.context.startActivity(intent)
         }
 
@@ -47,6 +48,10 @@ class WhatWePlayAdapter()
 //            intent.putExtra("question_index", position)
 //            holder.itemView.context.startActivity(intent)
 //        }
+
+    }
+
+    private fun putExtra(s: String, title: String) {
 
     }
 }
