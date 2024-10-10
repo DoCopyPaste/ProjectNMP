@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ProjectNMP"
         tools:targetApi="31">
         <activity
+            android:name=".TeamActivity"
+            android:exported="false" />
+        <activity
             android:name=".AchievementDetailActivity"
             android:exported="false" />
         <activity
