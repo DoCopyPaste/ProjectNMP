@@ -36,8 +36,10 @@ class WhatWePlayAdapter()
         // Set onClickListener untuk mengarahkan ke AchievementsDetail.
         holder.binding.achievementButton.setOnClickListener {
             val intent = Intent(holder.itemView.context, AchievementDetailActivity::class.java)
-            intent.putExtra("game_title", data.title)
-            intent.putExtra("game_description", data.description)
+            intent.putExtra("title", data.title)
+            intent.putExtra("description", data.description)
+            intent.putExtra("image", data.imageId)
+            intent.putExtra("achievements", ArrayList(data.achievements.map { HashMap(it) }))
             holder.itemView.context.startActivity(intent)
         }
 

@@ -18,9 +18,6 @@
             android:name=".AchievementDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".AchievementsDetail"
-            android:exported="true" />
-        <activity
             android:name=".SchedulePageDetailActivity"
             android:exported="true" />
         <activity
