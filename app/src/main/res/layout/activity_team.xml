@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".OurScheduleActivity">
+    android:layout_height="match_parent"
+    tools:context=".TeamActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="422dp"
+        android:layout_height="234dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/valorant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleTitle" />
 
     <ImageView
         android:id="@+id/menu_icon"
@@ -13,7 +23,6 @@
         android:layout_height="51dp"
         android:src="@drawable/menu_icon"
         app:layout_constraintEnd_toStartOf="@+id/scheduleTitle"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +31,7 @@
         android:layout_width="299dp"
         android:layout_height="51dp"
         android:gravity="center"
-        android:text="Schedule"
+        android:text="E-Sports"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,10 +51,9 @@
         android:id="@+id/recTeam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scheduleTitle" />
-
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
