@@ -29,14 +29,15 @@ class AchievementDetailActivity : AppCompatActivity() {
         val gameTitle = intent.getStringExtra("title")
         val gameImageId = intent.getIntExtra("image", 0)
         val description = intent.getStringExtra("description")
+        val achievements : ArrayList<Achievement> = intent.getParcelableArrayListExtra("achievements")!!
 
-        @Suppress("UNCHECKED_CAST")
-        val achievements = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getSerializableExtra("achievements", ArrayList::class.java) as? ArrayList<HashMap<String, Any>>
-        } else {
-            // Untuk API level di bawah 33
-            intent.getSerializableExtra("achievements") as? ArrayList<HashMap<String, Any>>
-        }
+//        @Suppress("UNCHECKED_CAST")
+//        val achievements = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//            intent.getSerializableExtra("achievements", ArrayList::class.java) as? ArrayList<HashMap<String, Any>>
+//        } else {
+//            // Untuk API level di bawah 33
+//            intent.getSerializableExtra("achievements") as? ArrayList<HashMap<String, Any>>
+//        }
 
        binding.recycleViewAchievements.layoutManager = LinearLayoutManager(this)
 
@@ -44,7 +45,7 @@ class AchievementDetailActivity : AppCompatActivity() {
         binding.recycleViewAchievements.adapter = adapter
 
         // Dapatkan tahun unik dari pencapaian
-        val years = achievements?.map { it["year"].toString() }?.distinct()?.sorted()
+        val years = achievements?.map { it.year.toString() }?.distinct()?.sorted()
         val yearOptions = listOf("All") + years.orEmpty()
 
         // Set data ke Spinner
@@ -59,7 +60,7 @@ class AchievementDetailActivity : AppCompatActivity() {
                 val filteredAchievements = if (selectedYear == "All") {
                     achievements.orEmpty()
                 } else {
-                    achievements?.filter { it["year"].toString() == selectedYear }
+                    achievements?.filter { it.year.toString() == selectedYear }
                 }
 
                 // Update data di RecyclerView

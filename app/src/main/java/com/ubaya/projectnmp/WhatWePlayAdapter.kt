@@ -39,7 +39,7 @@ class WhatWePlayAdapter()
             intent.putExtra("title", data.title)
             intent.putExtra("description", data.description)
             intent.putExtra("image", data.imageId)
-            intent.putExtra("achievements", ArrayList(data.achievements.map { HashMap(it) }))
+            intent.putParcelableArrayListExtra("achievements", ArrayList<Achievement>(data.achievements))
             holder.itemView.context.startActivity(intent)
         }
 
@@ -48,13 +48,7 @@ class WhatWePlayAdapter()
             intent.putExtra("title", data.title)
             intent.putExtra("description", data.description)
             intent.putExtra("image", data.imageId)
-
-            val teamsSerializable = HashMap<String, ArrayList<TeamMember>>()
-            data.teams.forEach { (teamName, teamMembers) ->
-                teamsSerializable[teamName] = ArrayList(teamMembers)
-            }
-            intent.putExtra("teams", teamsSerializable)
-
+            intent.putParcelableArrayListExtra("teams", ArrayList<Team>(data.teams))
             holder.itemView.context.startActivity(intent)
         }
 

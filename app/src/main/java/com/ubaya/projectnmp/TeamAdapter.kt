@@ -1,6 +1,7 @@
 package com.ubaya.projectnmp
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
@@ -9,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ubaya.projectnmp.databinding.OurScheduleCardBinding
 import com.ubaya.projectnmp.databinding.TeamCardBinding
 
-class TeamAdapter()
+class TeamAdapter(private var teams: List<Team>)
     : RecyclerView.Adapter<TeamAdapter.QuestionViewHolder>() {
     class QuestionViewHolder(val binding: TeamCardBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -19,29 +20,22 @@ class TeamAdapter()
     }
 
     override fun getItemCount(): Int {
-        return WhatWePlayData.whatWePlayDatas.size
+        return teams.size
     }
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) { // set
-        val data = WhatWePlayData.whatWePlayDatas[position]
-
-        // Loop melalui setiap tim di dalam data.teams
-        data.teams.forEach { (teamName, members) ->
-            // Buat button baru secara programatis
-            val teamButton = Button(holder.itemView.context).apply {
-                text = teamName // Set nama tim sebagai teks di button
-                layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-                setOnClickListener {
-                    // Aksi ketika button tim diklik
-                    val intent = Intent(holder.itemView.context, TeamActivity::class.java)
-                    intent.putExtra("teamName", teamName)
-                    intent.putExtra("teamMembers", ArrayList(members))
-                    holder.itemView.context.startActivity(intent)
-                }
-            }
+        val data = teams[position]
+//        val index = position + 1
+//        Log.d("TEAM", teams.map { it.name }.toString())
+//        Log.d("index", index.toString())
+        holder.binding.btnTeamA.text = data.name
+        holder.binding.btnTeamA.setOnClickListener {
+            val intent = Intent(holder.itemView.context, AchievementDetailActivity::class.java)
+            intent.putExtra("name", data.teamMember[position].name)
+            intent.putExtra("role", data.teamMember[position].role)
+            intent.putExtra("image", data.teamMember[position].imageId)
+            holder.itemView.context.startActivity(intent)
         }
     }
+
 }

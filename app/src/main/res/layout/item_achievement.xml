@@ -8,8 +8,9 @@
 
     <TextView
         android:id="@+id/txtAchievements"
-        android:layout_width="131dp"
-        android:layout_height="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
         android:text="Achievement Title"
         android:textSize="16sp"
         android:textStyle="bold"
