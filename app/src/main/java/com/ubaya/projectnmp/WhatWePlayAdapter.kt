@@ -43,6 +43,21 @@ class WhatWePlayAdapter()
             holder.itemView.context.startActivity(intent)
         }
 
+        holder.binding.teamButton.setOnClickListener{
+            val intent = Intent(holder.itemView.context, TeamActivity::class.java)
+            intent.putExtra("title", data.title)
+            intent.putExtra("description", data.description)
+            intent.putExtra("image", data.imageId)
+
+            val teamsSerializable = HashMap<String, ArrayList<TeamMember>>()
+            data.teams.forEach { (teamName, teamMembers) ->
+                teamsSerializable[teamName] = ArrayList(teamMembers)
+            }
+            intent.putExtra("teams", teamsSerializable)
+
+            holder.itemView.context.startActivity(intent)
+        }
+
 //        holder.binding.txtQuestionTitle.text = QuestionData.questions[position].question
 //
 //        holder.binding.btnEdit.setOnClickListener {

@@ -21,7 +21,8 @@ class AchievementAdapter(private var achievements: List<Map<String, Any>>) :
 
         override fun onBindViewHolder(holder: AchievementViewHolder, position: Int) {
             val achievement = achievements[position]
-            holder.txtAchievement.text = "${achievement["achievement"]} (${achievement["year"]})"
+            val index = position + 1
+            holder.txtAchievement.text = "$index . ${achievement["achievement"]} (${achievement["year"]})"
         }
 
         override fun getItemCount(): Int {
