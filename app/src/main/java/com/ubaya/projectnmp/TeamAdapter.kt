@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ubaya.projectnmp.databinding.OurScheduleCardBinding
 import com.ubaya.projectnmp.databinding.TeamCardBinding
 
-class TeamAdapter(private var teams: List<Team>)
+class TeamAdapter(private var teams: List<Team>, private var imageGameId: Int)
     : RecyclerView.Adapter<TeamAdapter.QuestionViewHolder>() {
     class QuestionViewHolder(val binding: TeamCardBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -30,10 +30,10 @@ class TeamAdapter(private var teams: List<Team>)
 //        Log.d("index", index.toString())
         holder.binding.btnTeamA.text = data.name
         holder.binding.btnTeamA.setOnClickListener {
-            val intent = Intent(holder.itemView.context, AchievementDetailActivity::class.java)
-            intent.putExtra("name", data.teamMember[position].name)
-            intent.putExtra("role", data.teamMember[position].role)
-            intent.putExtra("image", data.teamMember[position].imageId)
+            val intent = Intent(holder.itemView.context, TeamMemberActivity::class.java)
+            intent.putExtra("team", data.name)
+            intent.putParcelableArrayListExtra("teamMember", ArrayList<TeamMember>(data.teamMember))
+            intent.putExtra("image", imageGameId)
             holder.itemView.context.startActivity(intent)
         }
     }

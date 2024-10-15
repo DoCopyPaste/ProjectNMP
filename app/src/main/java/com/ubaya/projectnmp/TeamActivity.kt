@@ -18,8 +18,6 @@ class TeamActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        val title = intent.getStringExtra("title")
-        val description = intent.getStringExtra("description")
         val gameImageId = intent.getIntExtra("image", 0)
         val teams : ArrayList<Team> = intent.getParcelableArrayListExtra("teams")!!
 
@@ -29,7 +27,7 @@ class TeamActivity : AppCompatActivity() {
         }
         binding.recTeam.layoutManager = LinearLayoutManager(this)
         binding.recTeam.setHasFixedSize(true)
-        binding.recTeam.adapter = TeamAdapter(teams)
+        binding.recTeam.adapter = TeamAdapter(teams, gameImageId)
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
