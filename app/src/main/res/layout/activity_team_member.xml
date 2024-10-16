@@ -6,6 +6,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TeamMemberActivity">
+    <ImageView
+        android:id="@+id/menu_icon"
+        android:layout_width="56dp"
+        android:layout_height="51dp"
+        android:src="@drawable/menu_icon"
+        app:layout_constraintEnd_toStartOf="@+id/scheduleTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/scheduleTitle"
+        android:layout_width="299dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+        android:text="Teams"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/profile_icon"
+        android:layout_width="56dp"
+        android:layout_height="51dp"
+        android:src="@drawable/profile_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/scheduleTitle"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewTeamMember"
@@ -14,7 +43,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleTitle"
         app:srcCompat="@drawable/cod" />
 
     <TextView

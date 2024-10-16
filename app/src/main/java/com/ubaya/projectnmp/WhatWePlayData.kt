@@ -87,6 +87,7 @@ object WhatWePlayData {
                 )
             )
         ),
+
         WhatWePlayBank("PUBG", "PUBG is a TPS game",
             R.drawable.pubg, listOf(
                 Achievement("PUBG Global Championship", 2019, "Team A"),

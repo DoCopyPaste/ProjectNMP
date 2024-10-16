@@ -26,7 +26,7 @@ class SchedulePageDetailActivity : AppCompatActivity() {
         val imageId = intent.getIntExtra("image", 0)
 
         if (imageId != 0) {
-            findViewById<ImageView>(R.id.eventImage).setImageResource(imageId)
+            binding.eventImage.setImageResource(imageId)
         }
         Log.d("DetailActivity", "Received Image ID: $imageId")
 
@@ -37,8 +37,9 @@ class SchedulePageDetailActivity : AppCompatActivity() {
 
     private fun showNotificationDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Notification Created")
-        builder.setMessage("Your schedule notification has been created.")
+        val title = intent.getStringExtra("title")
+        builder.setTitle("Schedule has been saved !")
+        builder.setMessage("${title} has been set on your calendar")
         builder.setPositiveButton("OK") { dialog, _ ->
             dialog.dismiss()
         }

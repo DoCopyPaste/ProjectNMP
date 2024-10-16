@@ -15,6 +15,10 @@ class OurScheduleActivity : AppCompatActivity() {
         binding = ActivityOurScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        val prefs = getSharedPreferences("likePrefs", MODE_PRIVATE)
+//        val likeCount = prefs.getInt("likeCount", 0)
+//
+//        binding.scheduleTitle.text = likeCount.toString()
         binding.recOurSchedule.layoutManager = LinearLayoutManager(this)
         binding.recOurSchedule.setHasFixedSize(true)
         binding.recOurSchedule.adapter = OurScheduleAdapter()

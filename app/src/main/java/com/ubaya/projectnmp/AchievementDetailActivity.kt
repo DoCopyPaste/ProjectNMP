@@ -39,11 +39,10 @@ class AchievementDetailActivity : AppCompatActivity() {
 //            intent.getSerializableExtra("achievements") as? ArrayList<HashMap<String, Any>>
 //        }
 
-       binding.recycleViewAchievements.layoutManager = LinearLayoutManager(this)
+        binding.recycleViewAchievements.layoutManager = LinearLayoutManager(this)
 
         val adapter = AchievementAdapter(achievements ?: emptyList())
         binding.recycleViewAchievements.adapter = adapter
-
         // Dapatkan tahun unik dari pencapaian
         val years = achievements?.map { it.year.toString() }?.distinct()?.sorted()
         val yearOptions = listOf("All") + years.orEmpty()

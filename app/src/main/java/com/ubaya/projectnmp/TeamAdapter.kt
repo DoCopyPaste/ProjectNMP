@@ -37,5 +37,4 @@ class TeamAdapter(private var teams: List<Team>, private var imageGameId: Int)
             holder.itemView.context.startActivity(intent)
         }
     }
-
 }

@@ -14,6 +14,7 @@ object OurScheduleData {
 
     // Fungsi untuk memformat Date ke format yang diinginkan (contoh: "05 SEP")
     fun getFormattedDate(date: Date): String {
+        //val targetFormat = SimpleDateFormat("dd MMMM yyyy", Locale.US)
         val targetFormat = SimpleDateFormat("dd MMM yyyy", Locale.US)
         val formattedDate = targetFormat.format(date)
         return formattedDate.substring(0, 6).uppercase()

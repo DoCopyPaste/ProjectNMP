@@ -6,16 +6,31 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.ubaya.projectnmp.databinding.ActivityAchievementDetailBinding
+import com.ubaya.projectnmp.databinding.ActivityTeamBinding
+import com.ubaya.projectnmp.databinding.ActivityWhoWeAreBinding
 
 class WhoWeAreActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityWhoWeAreBinding
     private var likeCount = 0
     private val PREFS_NAME = "likePrefs"
     private val LIKE_KEY = "likeCount"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityWhoWeAreBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_who_we_are)
+        setContentView(binding.root)
+
+//        {
+//            "likePrefs" : {
+//                "likeCount" : "20",
+//                "dislikeCount" : "20"
+//            },
+//            "schedulePrefs" : {
+//
+//            }
+//        }
 
         // Load the saved likeCount from SharedPreferences
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
@@ -28,7 +43,7 @@ class WhoWeAreActivity : AppCompatActivity() {
             insets
         }
 
-        val likeButton = findViewById<Button>(R.id.likeButton)
+        val likeButton = binding.likeButton
         likeButton.text = "($likeCount)"
 
         likeButton.setOnClickListener {
