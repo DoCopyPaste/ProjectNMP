@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ubaya.projectnmp.databinding.ActivitySchedulePageDetailBinding
+import java.util.Date
 
 class SchedulePageDetailActivity : AppCompatActivity() {
 
@@ -16,9 +17,10 @@ class SchedulePageDetailActivity : AppCompatActivity() {
         binding = ActivitySchedulePageDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val time = OurScheduleData.getFormattedTime(Date(intent.getLongExtra("date", 0L)))
 //      binding.scheduleTitle.text = intent.getStringExtra("schedule")
         binding.eventTitle.text = intent.getStringExtra("title")
-        binding.eventLocationTime.text = intent.getStringExtra("location")
+        binding.eventLocationTime.text = intent.getStringExtra("location") + " (${time})"
         binding.eventTeam.text = intent.getStringExtra("team")
         binding.eventDescription.text = intent.getStringExtra("desc")
         val imageId = intent.getIntExtra("image", 0)

@@ -25,8 +25,10 @@ class OurScheduleAdapter()
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) { // set
         val data = OurScheduleData.ourScheduleDatas[position]
 
+        val formattedScheduleDate = OurScheduleData.getFormattedDate(data.schedule)
+
         // Set data pada elemen UI di dalam card.
-        holder.binding.buttonSchedule.text = data.schedule + "\n" + data.title + "\n" + data.game +" - "+ data.team // Misalnya TextView untuk judul game dengan id txtGameTitle
+        holder.binding.buttonSchedule.text = formattedScheduleDate + "\n" + data.title + "\n" + data.game +" - "+ data.team // Misalnya TextView untuk judul game dengan id txtGameTitle
 
         // Set onClickListener jika ada event yang ingin di-handle saat card di-klik.
         holder.binding.buttonSchedule.setOnClickListener {
