@@ -73,7 +73,6 @@
                 android:inputType="textPassword"
                 android:layout_marginTop="16dp"/>
 
-            <!-- Button with Constraint applied to align to the end -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
