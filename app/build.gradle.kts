@@ -44,6 +44,7 @@ android {
 
 dependencies {
 
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation(libs.androidx.cardview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -53,6 +54,8 @@ dependencies {
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
+    implementation("com.android.volley:volley:1.2.1")
+    implementation("com.google.code.gson:gson:2.10.1")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation ("de.hdodenhof:circleimageview:3.1.0")

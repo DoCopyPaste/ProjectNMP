@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">ProjectNMP</string>
     <string name="who_we_are_description">Titan Strike is a competitive e-sports team known for their relentless drive and tactical prowess across multiple gaming titles, especially in Valorant and League of Legends. With a roster of skilled players and a reputation for teamwork and strategic excellence, Titan Strike has earned top placements in regional and international tournaments. Their commitment to innovation and growth continues to make them a formidable force in the e-sports arena.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

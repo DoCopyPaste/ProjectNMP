@@ -4,11 +4,14 @@
 
     <item
         android:id="@+id/itemWhatWePlay"
+        android:icon="@drawable/what_we_play_icon"
         android:title="What We Play" />
     <item
         android:id="@+id/itemOurSchedule"
+        android:icon="@drawable/our_schedule_icon"
         android:title="Our Schedule" />
     <item
         android:id="@+id/itemWhoWeAre"
+        android:icon="@drawable/who_we_are_icon"
         android:title="Who We Are" />
 </menu>
