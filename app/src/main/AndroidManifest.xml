@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ProjectNMP"
         tools:targetApi="31">
         <activity
+            android:name=".SidebarMenu"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
