@@ -14,25 +14,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.whatWePlayIcon.setOnClickListener {
-            startActivity(Intent(this, WhatWePlayActivity::class.java))
-        }
-        binding.whatWePlayText.setOnClickListener {
-            startActivity(Intent(this, WhatWePlayActivity::class.java))
-        }
-
-        binding.whoWeAreIcon.setOnClickListener {
-            startActivity(Intent(this, WhoWeAreActivity::class.java))
-        }
-        binding.whoWeAreText.setOnClickListener {
-            startActivity(Intent(this, WhoWeAreActivity::class.java))
+        binding.bottomNav.setOnItemSelectedListener {
+            binding.main.currentItem = when(it.itemId) {
+                R.id.itemWhatWePlay -> 0
+                R.id.itemOurSchedule -> 1
+                R.id.itemWhoWeAre -> 2
+                else -> 0 // default to home
+            }
+            true
         }
 
-        binding.ourScheduleIcon.setOnClickListener {
-            startActivity(Intent(this, OurScheduleActivity::class.java))
-        }
-        binding.ourScheduleText.setOnClickListener {
-            startActivity(Intent(this, OurScheduleActivity::class.java))
+        var eventFragmentList = EventFragmentList.newInstance(events)
+        supportFragmentManager.beginTransaction().apply {
+            add(R.id.container, eventFragmentList)
+            commit()
         }
     }
 }
