@@ -41,10 +41,26 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        binding.menuIcon.setOnClickListener {
+            if (binding.drawerLayout.isDrawerOpen(binding.drawer)) {
+                binding.drawerLayout.closeDrawer(findViewById(R.id.drawer)) // Tutup jika sudah terbuka
+            } else {
+                binding.drawerLayout.openDrawer(findViewById(R.id.drawer)) // Buka jika tertutup
+            }
+        }
+
 //        var eventFragmentList = WhatWePlayFragmentList.newInstance()
 //        supportFragmentManager.beginTransaction().apply {
 //            add(R.id.container, eventFragmentList)
 //            commit()
 //        }
+    }
+
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(binding.drawer)) {
+            binding.drawerLayout.closeDrawer(binding.drawer)
+        } else {
+            super.onBackPressed()
+        }
     }
 }
