@@ -2,31 +2,18 @@ package com.ubaya.projectnmp
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ubaya.projectnmp.databinding.ActivitySignInBinding
-import com.ubaya.projectnmp.databinding.FragmentWhatWePlayBinding
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
 
-    private lateinit var sharedPreferences: SharedPreferences
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
-        setContentView(binding.main)
-        sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
-
-        // Check if user is already logged in
-        if (sharedPreferences.getBoolean("logged_in", false)) {
-            navigateToMainActivity()
-        }
+        setContentView(binding.root)
 
         binding.submitButton.setOnClickListener {
             val username = binding.usernameField.text.toString()
@@ -34,7 +21,7 @@ class SignInActivity : AppCompatActivity() {
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
                 if (validateCredentials(username, password)) {
-                    saveSession()
+                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
                     navigateToMainActivity()
                 } else {
                     Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()
@@ -50,15 +37,12 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun validateCredentials(username: String, password: String): Boolean {
-        // Replace with actual authentication logic
-        return username == "admin" && password == "password"
-    }
+        // Ambil data dari SharedPreferences
+        val sharedPreferences = getSharedPreferences("user_data", Context.MODE_PRIVATE)
+        val storedUsername = sharedPreferences.getString("username", null)
+        val storedPassword = sharedPreferences.getString("password", null)
 
-    private fun saveSession() {
-        with(sharedPreferences.edit()) {
-            putBoolean("logged_in", true)
-            apply()
-        }
+        return username == storedUsername && password == storedPassword
     }
 
     private fun navigateToMainActivity() {
