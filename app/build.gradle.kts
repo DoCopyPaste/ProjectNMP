@@ -43,7 +43,7 @@ android {
 }
 
 dependencies {
-
+    implementation("com.android.volley:volley:1.2.1")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation(libs.androidx.cardview)
     implementation(libs.androidx.core.ktx)
