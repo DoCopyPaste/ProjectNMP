@@ -2,12 +2,12 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 error_reporting(E_ERROR | E_PARSE);
-$c = new mysqli("localhost", "root", "", "musicdb");
+$mysqli = new mysqli("localhost", "root", "", "projectnmp");
 if ($c->connect_errno) {
     echo json_encode(array('result' => 'ERROR', 'message' => 'Failed to connect DB'));
     die();
 }
-$c->set_charset("UTF8");
+$mysqli->set_charset("UTF8");
 // Ambil data dari permintaan POST
 $username = $_POST['username'];
 $password = $_POST['password'];
