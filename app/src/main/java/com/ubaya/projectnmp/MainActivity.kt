@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
         binding.btnApplyTeam.setOnClickListener {
-            startActivity(Intent(this,ApplyTeamActivity::class.java))
+//            startActivity(Intent(this,ApplyTeamActivity::class.java)) nanti ini dari fab
         }
 
 //        var eventFragmentList = WhatWePlayFragmentList.newInstance()
