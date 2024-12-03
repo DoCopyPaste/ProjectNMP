@@ -52,7 +52,7 @@ class SignInActivity : AppCompatActivity() {
 //
 //        return username == storedUsername && password == storedPassword
 
-        val url = "http://10.0.2.2/projectnmp/validate_login.php" // Sesuaikan URL dengan endpoint server Anda
+        val url = "https://ubaya.xyz/native/160422011/validate_login.php" // Sesuaikan URL dengan endpoint server Anda
         val queue = Volley.newRequestQueue(this)
 
         val stringRequest = object : StringRequest(
@@ -62,7 +62,9 @@ class SignInActivity : AppCompatActivity() {
                     val jsonObject = JSONObject(response)
                     if (jsonObject.getString("status") == "OK") {
                         Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
-                        saveSession()
+                        val userId = jsonObject.getString("user_id")
+                        val username = jsonObject.getString("username")
+                        saveSession(userId, username)
                         navigateToMainActivity()
                     } else {
                         Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()
@@ -86,9 +88,11 @@ class SignInActivity : AppCompatActivity() {
         queue.add(stringRequest)
     }
 
-    private fun saveSession() {
+    private fun saveSession(userId: String, username: String) {
         with(sharedPreferences.edit()) {
             putBoolean("logged_in", true)
+            putString("user_id", userId)
+            putString("username", username)
             apply()
         }
     }

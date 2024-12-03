@@ -102,7 +102,7 @@ class SignUpActivity : AppCompatActivity() {
         val password = binding.passwordField.text.toString()
 
         // Kirim data ke server
-        val url = "http://10.0.2.2/projectnmp/signup.php" // Ganti dengan URL API Anda
+        val url = "https://ubaya.xyz/native/160422011/signup.php" // Ganti dengan URL API Anda
 
         val stringRequest = object : StringRequest(
             Method.POST, url,

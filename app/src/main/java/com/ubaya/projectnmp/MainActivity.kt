@@ -17,8 +17,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val name = sharedPreferences.getString("username", null)
+
+        binding.username.text = "Welcome back, $name !"
 //        // Check if user is already logged in
 //        if (sharedPreferences.getBoolean("logged_in", false)) {
 //            startActivity(Intent(this, SignInActivity::class.java))
@@ -29,9 +34,6 @@ class MainActivity : AppCompatActivity() {
         fragments.add(WhatWePlayFragment())
         fragments.add(OurScheduleFragment())
         fragments.add(WhoWeAreFragment())
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         binding.viewPager.adapter = MyAdapter(this, fragments)
 
@@ -63,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnSignOut.setOnClickListener {
             with(sharedPreferences.edit()) {
                 putBoolean("logged_in", false)
+                putString("user_id", null)
                 apply()
             }
             Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show()
