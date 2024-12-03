@@ -72,6 +72,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
+        binding.btnApplyTeam.setOnClickListener {
+            startActivity(Intent(this,ApplyTeamActivity::class.java))
+        }
 
 //        var eventFragmentList = WhatWePlayFragmentList.newInstance()
 //        supportFragmentManager.beginTransaction().apply {
