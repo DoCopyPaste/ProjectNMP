@@ -20,6 +20,12 @@
             android:name=".ApplyTeamActivity"
             android:exported="false" />
         <activity
+            android:name=".ProposalAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ApplyTeamNewActivity"
+            android:exported="false" />
+        <activity
             android:name=".SidebarMenu"
             android:exported="false" />
         <activity

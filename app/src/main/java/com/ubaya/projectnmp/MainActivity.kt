@@ -73,8 +73,10 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
         binding.btnApplyTeam.setOnClickListener {
-//            startActivity(Intent(this,ApplyTeamActivity::class.java)) nanti ini dari fab
+            val intent = Intent(this, ApplyTeamActivity::class.java)
+            startActivity(intent)
         }
+
 
 //        var eventFragmentList = WhatWePlayFragmentList.newInstance()
 //        supportFragmentManager.beginTransaction().apply {

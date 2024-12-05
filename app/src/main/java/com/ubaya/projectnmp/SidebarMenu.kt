@@ -1,5 +1,6 @@
 package com.ubaya.projectnmp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -23,7 +24,8 @@ class SidebarMenu : AppCompatActivity() {
 //        supportActionBar?.setHomeAsUpIndicator(R.drawable.pp)
 
         binding.btnApplyTeam.setOnClickListener {
-            Toast.makeText(this, "Apply Team Clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ApplyTeamActivity::class.java)
+            startActivity(intent)
         }
 
         binding.btnProfile.setOnClickListener {

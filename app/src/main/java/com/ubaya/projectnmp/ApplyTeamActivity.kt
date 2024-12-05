@@ -1,63 +1,40 @@
 package com.ubaya.projectnmp
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ubaya.projectnmp.Proposal
+import com.ubaya.projectnmp.ProposalAdapter
 import com.ubaya.projectnmp.databinding.ActivityApplyTeamBinding
 
 class ApplyTeamActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityApplyTeamBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        // Menginisialisasi binding
         binding = ActivityApplyTeamBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val games = listOf("Choose Game", "Valorant", "CS:GO", "Mobile Legends")
-        val teams = listOf("Choose Team", "Team A", "Team B", "Team C")
+        // Dummy data untuk daftar proposal
+        val proposals = listOf(
+            Proposal("League of Legends", "WAITING"),
+            Proposal("League of Legends", "DECLINED"),
+            Proposal("Mobile Legends", "GRANTED")
+        )
 
-        // Adapter spinner Game
-        val gameAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, games)
-        gameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spnChooseGame.adapter = gameAdapter
+        // Mengatur RecyclerView
+        binding.proposalRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.proposalRecyclerView.adapter = ProposalAdapter(proposals)
 
-        // Adapter spinner team
-        val teamAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, teams)
-        teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spnChooseTeam.adapter = teamAdapter
-
-        // Listeners pinner game
-        binding.spnChooseGame.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position > 0) { // "Choose Game" dipilih ga ngapa"in
-                    Toast.makeText(this@ApplyTeamActivity, "Selected Game: ${games[position]}", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
-        // Listener  spinner team
-        binding.spnChooseTeam.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position > 0) {
-                    Toast.makeText(this@ApplyTeamActivity, "Selected Team: ${teams[position]}", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
-
-//        setContentView(R.layout.activity_apply_team)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        // Tindakan untuk tombol FAB
+        binding.fab.setOnClickListener {
+            val intent = Intent(this, ApplyTeamNewActivity::class.java)
+            startActivity(intent)
         }
     }
 }
