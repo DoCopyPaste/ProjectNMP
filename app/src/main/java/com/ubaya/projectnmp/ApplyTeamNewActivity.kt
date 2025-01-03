@@ -151,7 +151,7 @@ class ApplyTeamNewActivity : AppCompatActivity() {
 
     private fun fetchTeams(idGame: Int) {
         val idMember = 4 // Ganti dengan idMember yang sesuai (bisa dari SharedPreferences atau intent)
-        val url = "https://ubaya.xyz/native/160422011/get_teams_by_game.php"
+        val url = "https://ubaya.xyz/native/160422011/get_teams_by_game_based_member.php"
 
         val stringRequest = object : StringRequest(
             Request.Method.POST, url,

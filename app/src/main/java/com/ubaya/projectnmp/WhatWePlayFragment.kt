@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
@@ -19,52 +20,53 @@ import org.json.JSONObject
 
 class WhatWePlayFragment : Fragment() {
     private lateinit var binding:FragmentWhatWePlayBinding
-    var datas:ArrayList<WhatWePlayData> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
 
         }
-//        val q = Volley.newRequestQueue(activity)
-//        val url = "http://10.0.2.2/music/get_playlist.php"
-//        var stringRequest = StringRequest(
-//            Request.Method.POST, url,
-//            {
-//                Log.d("apiresult", it)
-//                val obj = JSONObject(it)
-//                if (obj.getString("result") == "OK") {
-//                    val data = obj.getJSONArray("data")
-//
-//                    val sType = object : TypeToken<List<Playlist>>() { }.type
-//                    playlists = Gson().fromJson(data.toString(), sType) as
-//                            ArrayList<Playlist>
-//                    Log.d("apiresult", playlists.toString())
-//
-//
-//                    for (i in 0 until data.length()) {
-//                        val playObj = data.getJSONObject(i)
-//                        val playlist = Playlist(
-//                            playObj.getInt("id"),
-//                            playObj.getString("title"),
-//                            playObj.getString("subtitle"),
-//                            playObj.getString("description"),
-//                            playObj.getString("image_url"),
-//                            playObj.getInt("num_likes")
-//                        )
-//                        playlists.add(playlist)
-//                    }
-        //              UPDATE LIST
-//                    Log.d("cekisiarray", playlists.toString())
-//                }
-//            },
-//            {
-//                Log.e("apiresult", it.message.toString())
-//            })
-//        q.add(stringRequest)
 
     }
+    private fun fetchGames() {
+        val url = "https://ubaya.xyz/native/160422011/get_games.php" // Ganti dengan URL API 1
 
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                try {
+                    val jsonResponse = JSONObject(response)
+                    val status = jsonResponse.getString("status")
+
+                    if (status == "OK") {
+                        val gamesArray = jsonResponse.getJSONArray("games")
+                        val gamesList = mutableListOf<Game>()
+
+                        for (i in 0 until gamesArray.length()) {
+                            val gameObj = gamesArray.getJSONObject(i)
+                            val game = Game(
+                                idGame = gameObj.getInt("idgame"),
+                                name = gameObj.getString("name"),
+                                description = gameObj.getString("description")
+                            )
+                            gamesList.add(game)
+                        }
+                        binding.recWhatWePlay.adapter = WhatWePlayAdapter(gamesList)
+                    } else {
+                        Toast.makeText(requireContext(), "Failed to fetch games", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Toast.makeText(requireContext(), "Error parsing games", Toast.LENGTH_SHORT).show()
+                }
+            },
+            { error ->
+                Toast.makeText(requireContext(), "Error fetching games: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+        )
+
+        Volley.newRequestQueue(requireContext()).add(stringRequest)
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -81,7 +83,7 @@ class WhatWePlayFragment : Fragment() {
         with(binding.recWhatWePlay) {
             layoutManager = lm
             setHasFixedSize(true)
-            adapter = WhatWePlayAdapter()
+            fetchGames()
         }
     }
 
