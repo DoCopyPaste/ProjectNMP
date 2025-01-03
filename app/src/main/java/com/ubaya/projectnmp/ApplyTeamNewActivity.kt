@@ -68,7 +68,7 @@ class ApplyTeamNewActivity : AppCompatActivity() {
                     Toast.makeText(this, "Please enter a description!", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-
+ 
                 val url = "https://ubaya.xyz/native/160422011/apply_team.php"
                 val stringRequest = object : StringRequest(
                     Method.POST, url,
