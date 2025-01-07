@@ -6,7 +6,7 @@ import java.io.Serializable
 import java.util.Dictionary
 
 @Parcelize
-data class Team(var idTeam: Int, var name: String, var teamMember: List<TeamMember>) : Parcelable
+data class Team(var idTeam: Int, var name: String) : Parcelable
 @Parcelize
 data class TeamMember(var idMember: Int, var name: String, var role: String, var imageId: Int) : Parcelable
 @Parcelize

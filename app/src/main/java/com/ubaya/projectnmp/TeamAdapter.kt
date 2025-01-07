@@ -32,7 +32,6 @@ class TeamAdapter(private var teams: List<Team>, private var imageGameId: Int)
         holder.binding.btnTeamA.setOnClickListener {
             val intent = Intent(holder.itemView.context, TeamMemberActivity::class.java)
             intent.putExtra("team", data.name)
-            intent.putParcelableArrayListExtra("teamMember", ArrayList<TeamMember>(data.teamMember))
             intent.putExtra("image", imageGameId)
             holder.itemView.context.startActivity(intent)
         }
