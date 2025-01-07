@@ -8,14 +8,23 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.squareup.picasso.Picasso
 import com.ubaya.projectnmp.databinding.ActivityAchievementDetailBinding
 import com.ubaya.projectnmp.databinding.ActivityTeamBinding
+import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class AchievementDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAchievementDetailBinding
@@ -28,51 +37,17 @@ class AchievementDetailActivity : AppCompatActivity() {
         // Terima data dari Intent
         val gameTitle = intent.getStringExtra("title")
         val gameImageId = intent.getIntExtra("image", 0)
-        val description = intent.getStringExtra("description")
-        val achievements : ArrayList<Achievement> = intent.getParcelableArrayListExtra("achievements")!!
 
-//        @Suppress("UNCHECKED_CAST")
-//        val achievements = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//            intent.getSerializableExtra("achievements", ArrayList::class.java) as? ArrayList<HashMap<String, Any>>
-//        } else {
-//            // Untuk API level di bawah 33
-//            intent.getSerializableExtra("achievements") as? ArrayList<HashMap<String, Any>>
-//        }
+        fetchAchievements()
 
-        binding.recycleViewAchievements.layoutManager = LinearLayoutManager(this)
-
-        val adapter = AchievementAdapter(achievements ?: emptyList())
-        binding.recycleViewAchievements.adapter = adapter
-        // Dapatkan tahun unik dari pencapaian
-        val years = achievements?.map { it.year.toString() }?.distinct()?.sorted()
-        val yearOptions = listOf("All") + years.orEmpty()
-
-        // Set data ke Spinner
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, yearOptions)
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerYear.adapter = spinnerAdapter
-
-        // Filter berdasarkan tahun
-        binding.spinnerYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                val selectedYear = yearOptions[position]
-                val filteredAchievements = if (selectedYear == "All") {
-                    achievements.orEmpty()
-                } else {
-                    achievements?.filter { it.year.toString() == selectedYear }
-                }
-
-                // Update data di RecyclerView
-                adapter.updateData(filteredAchievements.orEmpty())
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
 
         // Set title, description, dan image di UI
         binding.txtGameTitle.text = gameTitle
         if (gameImageId != 0) {
-            binding.imageView.setImageResource(gameImageId)
+            val imageView = binding.imageView
+            Picasso.get()
+                .load("file:///android_asset/games/${gameImageId}.png")
+                .into(imageView)
         }
 
 
@@ -81,6 +56,91 @@ class AchievementDetailActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+    }
+    private fun  fetchAchievements() {
+        val url = "https://ubaya.xyz/native/160422011/get_achievements.php" // Ganti dengan URL API 1
+
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                try {
+                    val jsonResponse = JSONObject(response)
+                    val status = jsonResponse.getString("status")
+
+                    if (status == "OK") {
+                        val achievementArray = jsonResponse.getJSONArray("achievements")
+                        val achievementList = mutableListOf<Achievement>()
+
+                        for (i in 0 until achievementArray.length()) {
+                            val achievementObj = achievementArray.getJSONObject(i)
+//                            val rawDate = achievementObj.getString("year")
+//                            val formattedDate = extractYearFromDate(rawDate)
+                            val achievement = Achievement(
+                                name = achievementObj.getString("name"),
+//                                year = formattedDate.toInt(),
+                                year=2024,
+                                team = achievementObj.getString("team")
+                            )
+                            achievementList.add(achievement)
+                        }
+                        binding.recycleViewAchievements.layoutManager = LinearLayoutManager(this)
+
+                        val adapter = AchievementAdapter( achievementList ?: emptyList())
+                        binding.recycleViewAchievements.adapter = adapter
+                        // Dapatkan tahun unik dari pencapaian
+                        val years = achievementList?.map { it.year.toString() }?.distinct()?.sorted()
+                        val yearOptions = listOf("All") + years.orEmpty()
+
+                        // Set data ke Spinner
+                        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, yearOptions)
+                        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        binding.spinnerYear.adapter = spinnerAdapter
+
+                        // Filter berdasarkan tahun
+                        binding.spinnerYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                                val selectedYear = yearOptions[position]
+                                val filteredAchievements = if (selectedYear == "All") {
+                                    achievementList.orEmpty()
+                                } else {
+                                    achievementList?.filter { it.year.toString() == selectedYear }
+                                }
+
+                                // Update data di RecyclerView
+                                adapter.updateData(filteredAchievements.orEmpty())
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>) {}
+                        }
+                    } else {
+                        Toast.makeText(this, "Failed to fetch Achievements", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Toast.makeText(this, "Error parsing Achievements", Toast.LENGTH_SHORT).show()
+                }
+            },
+            { error ->
+                Toast.makeText(this, "Error fetching Achievements: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+        )
+
+        Volley.newRequestQueue(this).add(stringRequest)
+    }
+    fun extractYearFromDate(dateString: String): String {
+        try {
+            // Format input sesuai format string datetime Anda
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            val date = inputFormat.parse(dateString)
+
+            // Format output menjadi hanya tahun
+            val outputFormat = SimpleDateFormat("yyyy", Locale.getDefault())
+            return outputFormat.format(date!!)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return "Invalid date"
         }
     }
 }

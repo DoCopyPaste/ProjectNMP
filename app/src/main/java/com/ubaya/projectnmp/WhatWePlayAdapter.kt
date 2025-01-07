@@ -42,8 +42,6 @@ class WhatWePlayAdapter(private var games: List<Game>)
             val intent = Intent(holder.itemView.context, AchievementDetailActivity::class.java)
             intent.putExtra("id", data.idGame)
             intent.putExtra("title", data.name)
-            intent.putExtra("description", data.description)
-            intent.putExtra("image", data.idGame)
             holder.itemView.context.startActivity(intent)
         }
 
