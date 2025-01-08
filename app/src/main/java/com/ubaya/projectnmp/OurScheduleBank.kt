@@ -1,7 +1,9 @@
 package com.ubaya.projectnmp
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.sql.Date
 
-data class OurScheduleBank(var game:String, var description:String, var location:String, var schedule:java.util.Date, var title:String, var team:String, var imageId:Int) {
+@Parcelize
 
-}
+data class Event(var game:String, var description:String, var schedule:java.util.Date, var title:String, var team:String, var imageId:Int) : Parcelable

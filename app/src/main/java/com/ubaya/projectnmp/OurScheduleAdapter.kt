@@ -8,8 +8,11 @@ import com.ubaya.projectnmp.databinding.ActivityOurScheduleBinding
 import com.ubaya.projectnmp.databinding.ActivityWhatWePlayBinding
 import com.ubaya.projectnmp.databinding.OurScheduleCardBinding
 import com.ubaya.projectnmp.databinding.WhatWePlayCardBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-class OurScheduleAdapter()
+class OurScheduleAdapter(private var events: List<Event>)
     :RecyclerView.Adapter<OurScheduleAdapter.QuestionViewHolder>() {
     class QuestionViewHolder(val binding: OurScheduleCardBinding):RecyclerView.ViewHolder(binding.root)
 
@@ -19,13 +22,13 @@ class OurScheduleAdapter()
     }
 
     override fun getItemCount(): Int {
-        return OurScheduleData.ourScheduleDatas.size
+        return events.size
     }
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) { // set
-        val data = OurScheduleData.ourScheduleDatas[position]
+        val data = events[position]
 
-        val formattedScheduleDate = OurScheduleData.getFormattedDate(data.schedule)
+        val formattedScheduleDate = getFormattedDate(data.schedule)
 
         // Set data pada elemen UI di dalam card.
         holder.binding.buttonSchedule.text = formattedScheduleDate + "\n" + data.title + "\n" + data.game +" - "+ data.team // Misalnya TextView untuk judul game dengan id txtGameTitle
@@ -34,8 +37,7 @@ class OurScheduleAdapter()
         holder.binding.buttonSchedule.setOnClickListener {
             val intent = Intent(holder.itemView.context, SchedulePageDetailActivity::class.java)
             intent.putExtra("game", data.game)
-            intent.putExtra("desc", data.description)
-            intent.putExtra("location", data.location)
+            intent.putExtra("description", data.description)
             intent.putExtra("title", data.title)
             intent.putExtra("team", data.team)
             intent.putExtra("schedule", data.schedule)
@@ -47,6 +49,20 @@ class OurScheduleAdapter()
 //            startActivity(intent)
 //        }
 
+    }
+
+    // Fungsi untuk memformat Date ke format yang diinginkan (contoh: "05 SEP")
+    fun getFormattedDate(date: Date): String {
+        //val targetFormat = SimpleDateFormat("dd MMMM yyyy", Locale.US)
+        val targetFormat = SimpleDateFormat("dd MMM yyyy", Locale.US)
+        val formattedDate = targetFormat.format(date)
+        return formattedDate.substring(0, 6).uppercase()
+    }
+
+    // Fungsi untuk mengambil jam dalam format "hh:mm a" (12-hour format dengan AM/PM)
+    fun getFormattedTime(date: Date): String {
+        val timeFormat = SimpleDateFormat("hh:mm a", Locale.US)  // Format jam 12 dengan AM/PM
+        return timeFormat.format(date)
     }
 }
 
