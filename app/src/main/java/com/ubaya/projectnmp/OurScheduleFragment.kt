@@ -20,42 +20,7 @@ class OurScheduleFragment : Fragment() {
         arguments?.let {
 
         }
-        //        val q = Volley.newRequestQueue(activity)
-//        val url = "http://10.0.2.2/music/get_playlist.php"
-//        var stringRequest = StringRequest(
-//            Request.Method.POST, url,
-//            {
-//                Log.d("apiresult", it)
-//                val obj = JSONObject(it)
-//                if (obj.getString("result") == "OK") {
-//                    val data = obj.getJSONArray("data")
-//
-//                    val sType = object : TypeToken<List<Playlist>>() { }.type
-//                    playlists = Gson().fromJson(data.toString(), sType) as
-//                            ArrayList<Playlist>
-//                    Log.d("apiresult", playlists.toString())
-//
-//
-//                    for (i in 0 until data.length()) {
-//                        val playObj = data.getJSONObject(i)
-//                        val playlist = Playlist(
-//                            playObj.getInt("id"),
-//                            playObj.getString("title"),
-//                            playObj.getString("subtitle"),
-//                            playObj.getString("description"),
-//                            playObj.getString("image_url"),
-//                            playObj.getInt("num_likes")
-//                        )
-//                        playlists.add(playlist)
-//                    }
-        //              UPDATE LIST
-//                    Log.d("cekisiarray", playlists.toString())
-//                }
-//            },
-//            {
-//                Log.e("apiresult", it.message.toString())
-//            })
-//        q.add(stringRequest)
+        
     }
 
     override fun onCreateView(

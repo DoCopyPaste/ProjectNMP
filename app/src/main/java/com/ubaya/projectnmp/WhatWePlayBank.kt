@@ -8,7 +8,7 @@ import java.util.Dictionary
 @Parcelize
 data class Team(var idTeam: Int, var name: String) : Parcelable
 @Parcelize
-data class TeamMember(var idMember: Int, var name: String, var role: String, var imageId: Int) : Parcelable
+data class TeamMember(var idMember: Int, var name: String, var description: String) : Parcelable
 @Parcelize
 data class Achievement(var name: String, var year: Int, var team: String) : Parcelable
 @Parcelize

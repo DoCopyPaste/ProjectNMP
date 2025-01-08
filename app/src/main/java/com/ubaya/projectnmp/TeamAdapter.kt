@@ -33,6 +33,7 @@ class TeamAdapter(private var teams: List<Team>, private var imageGameId: Int)
             val intent = Intent(holder.itemView.context, TeamMemberActivity::class.java)
             intent.putExtra("team", data.name)
             intent.putExtra("image", imageGameId)
+            intent.putExtra("idteam", data.idTeam)
             holder.itemView.context.startActivity(intent)
         }
     }

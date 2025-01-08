@@ -19,8 +19,7 @@ class TeamMemberAdapter (private var teamMembers: List<TeamMember>) :
     }
     override fun onBindViewHolder(holder: TeamMemberViewHolder, position: Int) {
         val data = teamMembers[position]
-        holder.binding.txtRole.text = data.role
+        holder.binding.txtRole.text = data.description
         holder.binding.txtUsername.text = data.name
-        holder.binding.imgAvatar.setImageResource(data.imageId)
     }
 }
