@@ -33,10 +33,10 @@ class ApplyTeamNewActivity : AppCompatActivity() {
         // Listener untuk Spinner Game
         binding.spnChooseGame.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position > 0) { // Pastikan "Choose Game" tidak dipilih
+                if (position > 0) { // Ini dipakai agar "Choose Game" tidak dipilih
                     val selectedGame = gamesList[position]
                     val idGame = gamesMap[selectedGame] // Ambil idGame berdasarkan nama
-                    fetchTeams(idGame!!) // Fetch tim berdasarkan game yang dipilih
+                    fetchTeams(idGame!!) // Fetch teamm berdasarkan id game yang dipilih
                 }
             }
 
@@ -150,7 +150,6 @@ class ApplyTeamNewActivity : AppCompatActivity() {
     }
 
     private fun fetchTeams(idGame: Int) {
-        val idMember = 4 // Ganti dengan idMember yang sesuai (bisa dari SharedPreferences atau intent)
         val url = "https://ubaya.xyz/native/160422011/get_teams_by_game_based_member.php"
 
         val stringRequest = object : StringRequest(
@@ -192,6 +191,7 @@ class ApplyTeamNewActivity : AppCompatActivity() {
         ) {
             override fun getParams(): Map<String, String> {
                 val params = HashMap<String, String>()
+                val idMember = sharedPreferences.getString("user_id", null)
                 params["idgame"] = idGame.toString()
                 params["idmember"] = idMember.toString()
                 return params

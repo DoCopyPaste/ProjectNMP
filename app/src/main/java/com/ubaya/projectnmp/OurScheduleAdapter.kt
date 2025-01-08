@@ -1,6 +1,7 @@
 package com.ubaya.projectnmp
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +30,7 @@ class OurScheduleAdapter(private var events: List<Event>)
         val data = events[position]
 
         val formattedScheduleDate = getFormattedDate(data.schedule)
+        val formattedScheduleTime = getFormattedTime(data.schedule)
 
         // Set data pada elemen UI di dalam card.
         holder.binding.buttonSchedule.text = formattedScheduleDate + "\n" + data.title + "\n" + data.game +" - "+ data.team // Misalnya TextView untuk judul game dengan id txtGameTitle
@@ -40,7 +42,7 @@ class OurScheduleAdapter(private var events: List<Event>)
             intent.putExtra("description", data.description)
             intent.putExtra("title", data.title)
             intent.putExtra("team", data.team)
-            intent.putExtra("schedule", data.schedule)
+            intent.putExtra("time", formattedScheduleTime)
             intent.putExtra("image", data.imageId)
             holder.itemView.context.startActivity(intent)
         }

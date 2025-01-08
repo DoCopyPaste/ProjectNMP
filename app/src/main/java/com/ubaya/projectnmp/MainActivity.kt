@@ -24,11 +24,10 @@ class MainActivity : AppCompatActivity() {
         val name = sharedPreferences.getString("username", null)
 
         binding.username.text = "Welcome back, $name !"
-//        // Check if user is already logged in
-//        if (sharedPreferences.getBoolean("logged_in", false)) {
-//            startActivity(Intent(this, SignInActivity::class.java))
-//            finish()
-//            return
+//      Check if user is already logged in
+//        if (sharedPreferences.getBoolean("logged_in", false) || name == null) {
+//            val intent = Intent(this, SignInActivity::class.java)
+//            this.startActivity(intent)
 //        }
 
         fragments.add(WhatWePlayFragment())

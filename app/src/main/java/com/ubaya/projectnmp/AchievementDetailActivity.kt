@@ -1,5 +1,8 @@
 package com.ubaya.projectnmp
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -29,11 +32,13 @@ import java.util.Locale
 
 class AchievementDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAchievementDetailBinding
+    private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityAchievementDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
 
         // Terima data dari Intent
         val gameTitle = intent.getStringExtra("title")
@@ -51,6 +56,27 @@ class AchievementDetailActivity : AppCompatActivity() {
                 .into(imageView)
         }
 
+        binding.menuIcon.setOnClickListener {
+            if (binding.drawerLayout.isDrawerOpen(binding.drawer)) {
+                binding.drawerLayout.closeDrawer(findViewById(R.id.drawer)) // Tutup jika sudah terbuka
+            } else {
+                binding.drawerLayout.openDrawer(findViewById(R.id.drawer)) // Buka jika tertutup
+            }
+        }
+        binding.btnSignOut.setOnClickListener {
+            with(sharedPreferences.edit()) {
+                putBoolean("logged_in", false)
+                putString("user_id", null)
+                apply()
+            }
+            Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, SignInActivity::class.java))
+            finish()
+        }
+        binding.btnApplyTeam.setOnClickListener {
+            val intent = Intent(this, ApplyTeamActivity::class.java)
+            startActivity(intent)
+        }
 
         // Mengatur padding untuk edge-to-edge layout
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
