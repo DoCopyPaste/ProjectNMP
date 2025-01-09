@@ -29,7 +29,9 @@ class TeamActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
         sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val name = sharedPreferences.getString("username", null)
 
+        binding.username.text = "Welcome back, $name !"
 
         val gameImageId = intent.getIntExtra("id", 0)
 

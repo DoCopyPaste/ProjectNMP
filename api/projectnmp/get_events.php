@@ -13,7 +13,7 @@ if ($mysqli->connect_errno) {
 $mysqli->set_charset("UTF8");
 
 // Query untuk mendapatkan semua tim dalam game
-$sql = "SELECT e.date, e.name, e.description, t.name as 'team', g.name as 'game', g.idgame FROM event e INNER JOIN event_teams et on e.idevent = et.idevent INNER JOIN team t on et.idteam = t.idteam INNER JOIN game g on t.idgame = g.idgame";
+$sql = "SELECT e.date, e.name, e.description, e.location, t.name as 'team', g.name as 'game', g.idgame FROM event e INNER JOIN event_teams et on e.idevent = et.idevent INNER JOIN team t on et.idteam = t.idteam INNER JOIN game g on t.idgame = g.idgame";
 $stmt = $mysqli->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();

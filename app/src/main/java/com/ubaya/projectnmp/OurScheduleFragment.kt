@@ -56,6 +56,7 @@ class OurScheduleFragment : Fragment() {
                             val event = Event(
                                 game = eventObj.getString("game"),
                                 description = eventObj.getString("description"),
+                                location = eventObj.getString("location"),
                                 schedule = parseDate(eventObj.getString("date")),
                                 title = eventObj.getString("name"),
                                 team = eventObj.getString("team"),

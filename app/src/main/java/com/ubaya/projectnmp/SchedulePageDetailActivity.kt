@@ -24,11 +24,14 @@ class SchedulePageDetailActivity : AppCompatActivity() {
         binding = ActivitySchedulePageDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val name = sharedPreferences.getString("username", null)
 
+        binding.username.text = "Welcome back, $name !"
         val time = intent.getStringExtra("time")
+        val location = intent.getStringExtra("location")
 //        binding.scheduleTitle.text = intent.getStringExtra("schedule")
         binding.eventTitle.text = intent.getStringExtra("title")
-        binding.eventLocationTime.text = "Los Angeles" + " (${time})"
+        binding.eventLocationTime.text = "${location}" + " (${time})"
         binding.eventTeam.text = intent.getStringExtra("team")
         binding.eventDescription.text = intent.getStringExtra("description")
         val imageId = intent.getIntExtra("image", 0)

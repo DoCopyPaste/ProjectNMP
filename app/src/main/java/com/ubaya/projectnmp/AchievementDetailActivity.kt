@@ -39,7 +39,9 @@ class AchievementDetailActivity : AppCompatActivity() {
         binding = ActivityAchievementDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val name = sharedPreferences.getString("username", null)
 
+        binding.username.text = "Welcome back, $name !"
         // Terima data dari Intent
         val gameTitle = intent.getStringExtra("title")
         val gameId = intent.getIntExtra("id", 0)
