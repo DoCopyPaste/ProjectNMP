@@ -26,7 +26,7 @@ class SchedulePageDetailActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
         val name = sharedPreferences.getString("username", null)
 
-        binding.username.text = "Welcome back, $name !"
+        binding.username.text = "Welcome back, $name !" 
         val time = intent.getStringExtra("time")
         val location = intent.getStringExtra("location")
 //        binding.scheduleTitle.text = intent.getStringExtra("schedule")
